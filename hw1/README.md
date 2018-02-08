@@ -2,7 +2,7 @@ A. Exercises
 
     1.[C] (warmup) Write a short C++ program that prints out the numbers from 1 to 10. When you are done, paste it into the homework page that you reach by clicking the letter C on the left. --> see first_print.cpp
 
-    2.[C] Type in the example code for timing a simple loop, compile and run it. Try clicking on the word 'elapsed_time' in the source file! Put some example output on your homework page.
+    2.[C] Type in the example code for timing a simple loop, compile and run it. Try clicking on the word 'elapsed_time' in the source file! Put some example output on your homework page. --> see timed_computation.cpp
 
 B. Sorting
 
