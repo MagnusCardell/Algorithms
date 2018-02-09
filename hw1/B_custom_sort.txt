@@ -1,1 +1,15 @@
-My own custom sorting algorithm.
+My own custom sorting algorithm. (uniqueness counts)
+
+Given an array of randomly generated integers, there exists a premade array filled with a
+    a default char value,of the same size as the max value of the generated integers. 
+    There also is an empty array that is ready for the final correct order. 
+
+The sort algorithms then takes each number as the index to the char-array and replaces
+    the existing char with the integer. After all integers are placed, a second loop
+    checks every value of the destination array. If the value is not the default char,
+    it is appended to the final destination array. 
+
+As the intermediate char array has to correspond with the size of the integers, this would
+    not be suited in a small memory environemnt. This algorithms do not handle duplicates,
+    but truncates the list to unique values.
+
