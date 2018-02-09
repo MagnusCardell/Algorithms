@@ -1,6 +1,7 @@
 #include<iostream>
 using namespace std;
 #include<stdlib.h>
+#include"elapsed_time.h"
  
 // Note:  if you save this file as 'sort.cpp' and then create an
 // executable called 'sort', you will need to run the program 
@@ -48,7 +49,10 @@ void printArray(int *arr, int N)
 
 int main()
 {
-  int N = 10;
+  int N;
+  cin >> N;
+  start_timer();
+  
   const int X = 100;
   const bool verbose = true;
   int *array = initializeArray(N, X);
@@ -61,4 +65,8 @@ int main()
   if ( verbose ) { cout << "Sorted:"; printArray(array, N); }
   delete [] array;
   delete [] bridge;
+
+  double cycles = elapsed_time(); 
+  cout << " Total cycles: " << cycles << endl;
+
 }
