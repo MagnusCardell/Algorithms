@@ -3,10 +3,8 @@ using namespace std;
 #include<stdlib.h>
 #include"elapsed_time.h"
  
-// Note:  if you save this file as 'sort.cpp' and then create an
-// executable called 'sort', you will need to run the program 
-// as './sort' so that you don't get the system-wide sort program.
- 
+// Custom sort implementation, using char array bridge.
+
 int *initializeArray( int N, int X )
 {
   // initialize an array with random values
@@ -52,7 +50,7 @@ int main()
   int N;
   cin >> N;
   start_timer();
-  
+
   const int X = 100;
   const bool verbose = true;
   int *array = initializeArray(N, X);
