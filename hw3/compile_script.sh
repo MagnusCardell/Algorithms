@@ -2,6 +2,7 @@
 
 for i in *.cpp
 do
-    echo "g++ -S -o "$i" "${i%.cpp}.s""
-    g++ -S -o "$i" "${i%.cpp}.s"
+    #uncomment echo for testing purposes
+    #echo "g++ -S -o "$i" "${i%.cpp}.s"" 
+    g++ -S -o "${i%.cpp}.s" "$i"
 done
