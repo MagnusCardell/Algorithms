@@ -1,0 +1,29 @@
+snippet 10 Answer
+
+Outermost loop:
+ - cost of initialize i: 1 cycle
+ - condition check: .5 cycle
+ 
+Middle loop:
+ - cost of initialize j: 1 cycle
+ - condition: .5 cycles
+
+Innermost loop:
+ - cost of initialize k: 1 cycle
+ - condition: .5 cycles
+ - body: 2 cycles
+
+Assume inner loop is fixed at 10 cycles
+
+Calculating the loops of two loops
+    1+2+3+...+n 
+    1/2 * n(n+1) * 10
+
+Now, including the innermost loop...
+    Max value of j is 100, giving the inner loop about 20 cycles
+    Using 20 as a max value, extrapolate into a 3d cube. (histogram)
+    x = n 
+    y = n+1
+    z(max) = 20
+    Average the height out to 5, then calculate the sum. 
+    5 * (1/2(n)(n+1)) = 25.250, actual timing = 140.000
