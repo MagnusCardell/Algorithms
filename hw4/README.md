@@ -10,7 +10,9 @@ for ( int i = 0; i < n; ++i ) {
 }
 ```
 
-976
+976 
+Since the loop has a fixed number of cycles per loop, the total will grow linearly. 
+If n=1000, cycles will be 9760
 
     2.[C] 
 
@@ -22,7 +24,10 @@ for ( int i = 0; i < n; ++i ) {
   }
 }
 ```
-	34984
+34984
+Compiling the above loops into a formula, [image], the total cost for n = n is 
+1+0.5(n+1)+(n+1)+0.5(n(n+1)+1)+n(n+1). Removing all constant c values and simplifying: 3n+2.5(n)^2
+If n = 100, cost is 300 + 25.000. If n = 1000, cost is 3000+2.500.000 = 2.503.000
 
     3.[C] 
 
