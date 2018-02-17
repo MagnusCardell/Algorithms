@@ -25,9 +25,8 @@ for ( int i = 0; i < n; ++i ) {
 }
 ```
 34984
-Compiling the above loops into a formula, [image], the total cost for n = n is 
-1+0.5(n+1)+(n+1)+0.5(n(n+1)+1)+n(n+1). Removing all constant c values and simplifying: 3n+2.5(n)^2
-If n = 100, cost is 300 + 25.000. If n = 1000, cost is 3000+2.500.000 = 2.503.000
+Compiling the code into a formula, the total cost simplified can be expressed 1.5n + 2.5(n)^2
+n(100) = 25.150 and n(1000)=2.501.500 cycles. The growth is exponential
 
     3.[C] 
 
@@ -39,7 +38,10 @@ for ( int i = 0; i < n; ++i ) {
   }
 }
 ```
-	52016
+52016
+Total cost can be estimated simplified to about 4(n)^2
+n(100) = 40.000
+n(1000) = 4.000.000, or using the provided estimate: 5.201.600 cycles
 
     4.[C] 
 
@@ -51,8 +53,10 @@ for ( int i = 0; i < n; ++i ) {
   }
 }
 ```
-	36376
-
+36376
+Simplifying the code into an estimated formula where the inner body is iterated n^2 times so about 4n^2
+n(100)= 40.000
+n(1000) = 4.000.000, or using the provided estimate: 3.637.600
     5.[C] 
 
 	
@@ -64,7 +68,10 @@ for ( int i = 0; i < n; ++i ) {
   i = i + 2;
 }
 ```
-	9088
+9088
+Simplifying the inner body to iterate about 0.25n^2 times, and the body to be worth about 4 cycles, totalling in n^2 cycles.
+n(100) = 10.000
+n(1000) = 1.000.000 cycles or using the provided estimate: 908.800 cycles
 
     6.[C] 
 
@@ -78,10 +85,12 @@ for ( int i = 0; i < n; ++i ) {
   }
 }
 ```
-	7107660
+7107660
+The three loops can be estimated to iterate n(0.5n(n)) times, which is 1.5n^3. With a body worth about 4 cycles then:
+n(100) = 6.000.000 cycles
+n(1000) = 6 * 10^9 cycles
 
     7.[C] 
-
 	
 ```
 for ( int i = 0; i < n; ++i ) {
@@ -92,10 +101,13 @@ for ( int i = 0; i < n; ++i ) {
   }
 }
 ```
-	1552300
+1552300
+Using the formula for the area of a tetrahydral plane, (n(n+1)(n+2))/6, the inner-most loop will iterate a total of n^3+3n^2+2n times.
+With a body cycle value of 1, and only taking the cubic parameter into account:
+n(100) = 1.000.000
+n(1000) = 10^9 cycles or using the provided estimate, 1,552300 *10^9 cycles
 
     8.[C] 
-
 	
 ```
 for ( int i = 0; i < n; ++i ) {
