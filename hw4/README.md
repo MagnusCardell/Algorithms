@@ -69,7 +69,9 @@ for ( int i = 0; i < n; ++i ) {
 }
 ```
 9088
-Simplifying the inner body to iterate about 0.25n^2 times, and the body to be worth about 4 cycles, totalling in n^2 cycles.
+Simplifying the inner body to iterate about 0.25n^2 times, and the inner-most cycle to add another .5(n)
+
+body to be worth about 4 cycles, totalling in n^2 cycles.
 n(100) = 10.000
 n(1000) = 1.000.000 cycles or using the provided estimate: 908.800 cycles
 
@@ -105,7 +107,7 @@ for ( int i = 0; i < n; ++i ) {
 Using the formula for the area of a tetrahydral plane, (n(n+1)(n+2))/6, the inner-most loop will iterate a total of n^3+3n^2+2n times.
 With a body cycle value of 1, and only taking the cubic parameter into account:
 n(100) = 1.000.000
-n(1000) = 10^9 cycles or using the provided estimate, 1,552300 *10^9 cycles
+n(1000) = 10^9 cycles or using the provided estimate, 1,5523 *10^9 cycles
 
     8.[C] 
 	
@@ -118,7 +120,9 @@ for ( int i = 0; i < n; ++i ) {
   }
 }
 ```
-	529056
+529056
+Considering that this algorithm runs in n^3, an estimate would be that n(1000)= 0.529056* 10^9.
+
 B. Estimating Total Cycles for Recursive Functions
 For each of the code snippets below, assume the function is called with n = 100, and predict the number of clock cycles you would get from timing it. Don't actually time it yet-- just think through, on paper, what would happen. Then on your homework page, write down your estimate, and say briefly (in about a sentence) why you came to the conclusion you did. Please provide an estimate for each of the seven snippets below.
 
