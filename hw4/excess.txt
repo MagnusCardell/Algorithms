@@ -1,0 +1,92 @@
+
+    1.[C]
+```
+    void recursion(int n)
+    {
+      double x = 2 * 3;
+      x = x * 3;
+     
+      if (n > 0)
+        recursion(n - 1);
+    }
+```
+Work for binary tree c
+This recursion tree will be a binary tree with maximum amounts of nodes. Using the formula for that: 2^(n+1)-1, there will be a total of 2^(100+1)-1 stack heaps, each heap worth 2 cycles. Total estimate is then 2 * 2.535301200456458802993406410752 × 10^30, or about 2^(102) cycles. 
+
+
+    2.[C]
+```
+    void recursion(int n)
+    {
+      double x = 2 * 3;
+      x = x * 3;
+     
+      if (n > 0)
+        recursion(n/2);
+    }
+```
+Every stack heap divide n by 2. When n = 100, it can be divided 7 times before its 1. So the number of cycles can be estimated to 2*2^(6+1)-1 = 2^8 = 256 cycles
+
+    3.[C]
+```
+    void recursion(int n)
+    {
+      double x = 2 * 3;
+      x = x * 3;
+     
+      if (n > 0)
+        recursion(n/3);
+    }
+```
+With n=100, the hight of the binary tree willl be 5, so with every function wort 2 cycles, an estimated total is 2*2^(4+1)-1 = 2^6 = 64
+
+    4.[C]
+```
+    void recursion(int n)
+    {
+      double x = 2 * 3;
+      for ( int i = 0; i < n; ++i ) {
+        x = 2+3;
+      }
+     
+      if (n > 0)
+        recursion(n/2);
+    }
+```
+First, the number of nodes are 127. Each loop performs iterations according to the value of n. Estimating a generalized node value of n=12, each node is then worth ~15 cycles, coming to a total of 15*127 = 1905 cycles 
+
+    5.[C]
+```
+    void recursion(int n)
+    {
+      double x = 2 * 3;
+      for ( int i = 0; i < n; ++i ) {
+        for ( int j = 0; j < i; ++j ) {
+          x = 32*sin(.32);
+        }
+      }
+     
+      if (n > 0)
+        recursion(n/2);
+    }
+```
+With the same generalization as before, I estimate n = 12, each node is now worth 78 cycles with a total estimate of 78*127 = 9926
+
+    6.[C]
+```
+    void recursion(int n)
+    {
+      double x = 2 * 3;
+      for ( int i = 0; i < n; ++i ) {
+        for ( int j = 0; j < n/2; ++j ) {
+          for ( int k = 0; k < n; ++k ) {
+            x = 5*x - 4;
+          }
+        }
+      }
+     
+      if (n > 0)
+        recursion(n/3);
+    }
+```
+With the same generalization as before, I estimate n = 12, each node is now worth 436 cycles, coming to a total of 426*127 = 55.473 cycles

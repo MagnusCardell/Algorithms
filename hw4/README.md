@@ -138,7 +138,7 @@ For each of the code snippets below, assume the function is called with n = 100,
         recursion(n - 1);
     }
 ```
-This recursion tree will be a binary tree with maximum amounts of nodes. Using the formula for that: 2^(n+1)-1, there will be a total of 2^(100+1)-1 stack heaps, each heap worth 2 cycles. Total estimate is then 2 * 2.535301200456458802993406410752 × 10^30, or about 2^(102) cycles. 
+The recursion will be called 100 times, each with a heap stack value of 2 cycles. Total estimate is then 200cycles.
 
     2.[C]
 ```
@@ -151,7 +151,7 @@ This recursion tree will be a binary tree with maximum amounts of nodes. Using t
         recursion(n/2);
     }
 ```
-Every stack heap divide n by 2. When n = 100, it can be divided 7 times before its 1. So the number of cycles can be estimated to 2*2^(7+1)-1 = 2^9 = 512 cycles
+Every stack heap divide n by 2. When n = 100, it can be divided 7 times before its 1. With a node value of 2 cycels, the number of cycles can be estimated to 2*7 = 14 cycles.
 
     3.[C]
 ```
@@ -164,6 +164,8 @@ Every stack heap divide n by 2. When n = 100, it can be divided 7 times before i
         recursion(n/3);
     }
 ```
+With n=100, the hight of the recursive tree willl be 5, so with every node wort 2 cycles, an estimated total is 2*5 = 10 cycles. 
+
     4.[C]
 ```
     void recursion(int n)
@@ -177,6 +179,8 @@ Every stack heap divide n by 2. When n = 100, it can be divided 7 times before i
         recursion(n/2);
     }
 ```
+First, the number of nodes are 7. Each loop performs iterations according to the value of n. Estimating a generalized node value of n=12, each node is then worth ~15 cycles, coming to a total of 15*7 = 105 cycles 
+
     5.[C]
 ```
     void recursion(int n)
@@ -192,6 +196,8 @@ Every stack heap divide n by 2. When n = 100, it can be divided 7 times before i
         recursion(n/2);
     }
 ```
+With the same generalization as before, I estimate n = 12, each node is now worth 78 cycles with a total estimate of 78*7 = 546 cycles
+
     6.[C]
 ```
     void recursion(int n)
@@ -209,6 +215,8 @@ Every stack heap divide n by 2. When n = 100, it can be divided 7 times before i
         recursion(n/3);
     }
 ```
+With the same generalization as before, I estimate n = 12, each node is now worth 436 cycles, coming to a total of 426*5 = 2130 cycles
+
     7.[C]
 ```
     void recursion(int n)
@@ -221,7 +229,10 @@ Every stack heap divide n by 2. When n = 100, it can be divided 7 times before i
         recursion(n/2);
       }
     }
+This binary tree will be of maximum size, where the number of nodes can be calculated with 2^(n+1)-1. Here n=7 due to the amount 100 can be divided. So number of nodes are 127, each node is worth about 2 cycles. Total cycles is then 2 *127 = 254 cycles
+
 ```
 C. Actual Timing for a Recursive Function
 
     1.[C] Now choose one of the recursive snippets from part B at random and actually time it (by making an appropriate C++ program). Please submit your code via git (if you do not have a repository for this class please let us know), and write down a comment about whether the result was high or low, and why you think that might be on your homework page. (With everyone choosing a problem at random, I'm hoping that all or almost all of the problems will have been checked by somebody.)
+    
