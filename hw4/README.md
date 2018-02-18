@@ -57,6 +57,7 @@ for ( int i = 0; i < n; ++i ) {
 Simplifying the code into an estimated formula where the inner body is iterated n^2 times so about 4n^2
 n(100)= 40.000
 n(1000) = 4.000.000, or using the provided estimate: 3.637.600
+    
     5.[C] 
 
 	
@@ -137,6 +138,8 @@ For each of the code snippets below, assume the function is called with n = 100,
         recursion(n - 1);
     }
 ```
+This recursion tree will be a binary tree with maximum amounts of nodes. Using the formula for that: 2^(n+1)-1, there will be a total of 2^(100+1)-1 stack heaps, each heap worth 2 cycles. Total estimate is then 2 * 2.535301200456458802993406410752 × 10^30, or about 2^(102) cycles. 
+
     2.[C]
 ```
     void recursion(int n)
@@ -148,6 +151,8 @@ For each of the code snippets below, assume the function is called with n = 100,
         recursion(n/2);
     }
 ```
+Every stack heap divide n by 2. When n = 100, it can be divided 7 times before its 1. So the number of cycles can be estimated to 2*2^(7+1)-1 = 2^9 = 512 cycles
+
     3.[C]
 ```
     void recursion(int n)
