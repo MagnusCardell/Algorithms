@@ -164,7 +164,7 @@ Every stack heap divide n by 2. When n = 100, it can be divided 7 times before i
         recursion(n/3);
     }
 ```
-With n=100, the hight of the recursive tree willl be 5, so with every node wort 20 cycles, an estimated total is 20*5 = 100 cycles. 
+With n=100, the hight of the recursive tree will be 5, so with every node wort 20 cycles, an estimated total is 20*5 = 100 cycles. 
 
     4.[C]
 ```
