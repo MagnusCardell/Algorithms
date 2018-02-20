@@ -1,0 +1,49 @@
+Looking at B3 and B5
+
+B3 Recursive function calls itself three times n/2
+
+We can see a pattern in the stacks called
+
+1 - 3 - 9 - 27  - ... sequence of sums of power of 3
+
+Now we need to figure out how many to sum up.
+Using 3^((logn)+1) (base2) that is the last in the sequence
+Sum of 3^0 + 3^1 + 3^2 + 3^3 +... + 3^((logn)+1) (base2).
+
+=
+
+3^((logn)+2)-1 / 3-1
+See Geometric formula
+
+
+Each stack frame is worth about 2-3 cycles, Multiply that with the result of number of execution
+
+B5
+
+r(12)
+
+    r(6)
+        r(3)
+            r(1)
+                r(0)
+                r(0)
+            r(1)
+                r(0)
+                r(0)
+        r(2)
+            r(1)
+                r(0)
+                r(0)
+            r(0)
+    r(4)
+        r(2)
+            r(1)
+                r(0)
+                r(0)
+            r(0)
+        r(1)
+            r(0)
+            r(0)
+
+
+So calculate the upper vound r(2) and lower bound (r3) as it wont take longer than that and not slower than r(2)
