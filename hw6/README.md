@@ -10,11 +10,13 @@ See vector_example.cpp
 B. Tree Structure
 
     1.[C] If you have a tree with 5 branches at each node, and height 3, how many nodes are there total on the tree?
+Using the geometric series formula, there will be 156 nodes in that branch. See photo for logic
 
     2.[C] If you have a tree with 5 branches at each node, and height log base 3 of n, how many nodes are there on the lowest level (the leaves)?
+Since n is a variable, the number of leafnodes are 5^(logn(base3)+1)
 
 C. Sorting Algorithm
-
+    Stogit work, not written here.
     1.[C] Who is your partner on this part of the homework?
 
     2.[C] Design your own sorting algorithm, and describe it in pseudo-code.

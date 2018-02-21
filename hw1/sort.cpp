@@ -51,6 +51,7 @@ void sortArray(int *array, int N)
  
 int main()
 {
+  int array[10] = {2,4,6,456};
   const int N = 10;
   const bool verbose = true;
   int *array = initializeArray(N);

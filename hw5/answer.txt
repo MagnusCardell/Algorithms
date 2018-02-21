@@ -46,4 +46,4 @@ r(12)
             r(0)
 
 
-So calculate the upper vound r(2) and lower bound (r3) as it wont take longer than that and not slower than r(2)
+So calculate the upper bound r(2) and lower bound (r3) as it wont take longer than that and not slower than r(2)
