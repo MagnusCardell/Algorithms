@@ -1,0 +1,31 @@
+bucket sort O(n+1)
+bubble sort
+selection sort
+insertion sort
+
+def of Big O
+Prove smth with def of Big O 
+
+Sat - math and proofs
+Tue - Doing proofs
+
+
+Given two functions, f and g from positive integers to positive reals,
+
+f grows no faster than g (g=O(g)) if there exists c<O, such that forall n f(n) < c * g(n)
+
+ex:
+    27n^2 + 1500 = O(n^2)
+    f(n)            g(n)
+
+    is f(n) < c * g(n) ?
+    27n^2 + 1500 = c * n^2
+
+n=1 f(n)=1528   g(n)=1
+n=2 f(n)=1608   g(n) = 4
+.
+.
+.
+27n^2 + 1500 / n^2   < 1528
+
+27 + 1500/n^2 < 1528 
