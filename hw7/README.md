@@ -8,11 +8,19 @@ Let us consider three C++ functions A, B and C whose time complexities are 500n 
 
     1.[C] Which function (A, B, or C) will run fastest for small input sizes? Explain
 
+B will run fastest because of the small overhead costs. A and C both add on large starting point cycles. 
+
     2.[C] Which function (A, B, or C) will run fastest for large input sizes? Explain
+
+A will run fastest for large input sizes because it is linear, as opposed to B and  C which both are exponential. As input size grow, A(n) will grow linearly, B(n) and C(n) will grow n^2
 
     3.[C] Suppose these functions all produce the same result, but they are versions of different underlying algorithms. Which of the three algorithms would you prefer to have available, in general? Why?
 
+In general, I would prefer A because of its linear growth in consumption. It is more predictable. 
+
     4.[C] Suppose these three algorithms were re-implemented in another language, in the context of a different operating system running on different hardware. Would you guess that the running times in the new context would be related to the old running times? If so, how? If not, what assumptions would be needed in order to make a connection?
+
+In general, you could assume that the re-implementation can fulfill the criteria. Because every language compiles to byte code which more or less use the same instructions. In specificity you would have to assume that both implementations use instructions and data structures present in both environments. In principality, these changes should not change how the algorithm runs. 
 
 B. Reading
 We would like to have a precise way of comparing the running times of algorithms without having to worry about the exact constants. For example, we might want to be able to say that 500 n + 500 and n are pretty similar (the graph in each case is a straight line) and to say that 10 n2 + 50 n + 4 is not so similar to n (the graph of the former is curved, not straight.) Luckily, there is a mathematically sound way to do this.
@@ -21,13 +29,27 @@ Carefully read Chapter 0 of our textbook (Dasgupta, Papadimitriou, and Vazirani)
 
     1.[C] After reading about the different ways of computing the fibonacci sequence and giving it some thought can you come up with an idea for a more efficient algorithm than fib2 on Pg.13?
 
+Fib2 stores its values and runs in linear time. Its hard to beat. My only idea that is faster is to have a lookup register or file of all fibonacci values premade. The algorithm would then only perform an array lookup which would result in O(1) since its one constant value who's cost depend on the machine. Drawbacks would be the impossibility of implementation since its an infinite sequence and inifinite memory doesn't exist yet.  
+
 Now carefully read section 0.3, make sure you understand the definitions! We will be using this extensively.
 
     2.[C] Prove that 500n + 500 is O(n). Be thorough but don't spend a ton of time on this.
 
+Defitinion of Big O says that there exists positive constants c such that f(n) <= c * g(n) for all n. In this case, I want to show that f(n) = 500n + 500 is in the set O(n). 
+- 500n+ 500 < 500n + 500n = 1000n. 
+- So 500n + 500 = O(n) [c = 1000] for all n>1.
+
+
     3.[C] Prove that 2n2 + 1000 is not O(n). That is, show that, no matter what specific value for c is tried, the precise inequality will not be true.
 
+I will prove that there is no constant positive integer c such that 2n^2 + 1000 < c * n. 
+- Solving for c gives me: (2n^2 0 1000)/n < c. 
+- This equality does not hold since n grows infinitely. C is a constant and therefore the inequality is proven.
+
+
     4.[C] What is a question you have about this reading?
+
+Is there a solution key for the problems at the end of the chapters available for students? Would love to check my work. Specificially about the reading, I would like to know why fib2 is classified as running in polynomial time. It seem to me that it should run in linear time since the function runs through every object of the list of length n. Would this not be equal to saying O(n). I can't find the reason it should be O(n^k).
 
 C. More essential definitions
 The definition above is for upper bounds, but the section briefly introduced two more definitions. Here is the corresponding definition for lower bounds, as follows: the statement that f(n) is Omega(g(n)) means that f(n) is always greater than a scaled version of g(n), for some fixed scaling factor. More precisely,
