@@ -131,8 +131,21 @@ void recursion(int n)
 
     1.[C] In general, what is the running time of the code in terms of n if we were to run it on the lab computers
 
+Evalutating the inner loop to be a constant cost of 5 cycles per loop, with 100 loops.
+
+In general it will be exponential time: 2^n * 500. 
+
+
     2.[C] Lets call your previous answer f. Now define a function g such that g is O(f), but not Omega(f).
+
+g(n) = O(f) but not g(n) = Omega(f) 
+
+If g(n) = n^2, then g(n) <= f(n) while g(n) !> f(n) so it is not Omega(f)
 
     3.[C] Now define a function g such that g is Omega(f), but not O(f).
 
+if g(n) = 3^n, then g(n) > f(n), while g(n) !< f(n) so it is not Big O(f)
+
     4.[C] Now define a function g that is Theta(f) in simplest terms. (For example, if your function was 20n + 7 then g would be n )
+
+g(n) = 2^n then g(n) = Theta(f). Where g(n) is in its most simple terms. 
