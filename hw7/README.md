@@ -1,0 +1,75 @@
+Homework 7   Due Saturday, 2-24-18
+A. Background
+Designing algorithms is an art, one that benefits from an understanding of time complexity. Some of the algorithms we have seen can be described elegantly-- in just a few English sentences, without any mention of C++ or any other programming language. We would like to have a similarly elegant way to describe the costs of running an algorithm, without having to resort to C++ or assembly or any other programming language. But how would that be possible?
+
+If we want to measure the running time of a pure algorithm, then we can't measure in microseconds, or in clock cycles, or in any similar units, since those quantities will depend on the specifics of a particular implementation on a particular machine. We instead need something more flexible, one where the unit of time (or memory) is not fixed in advance.
+
+Let us consider three C++ functions A, B and C whose time complexities are 500n + 500, 10n2 + 50n + 4, and 2n2 + 1000 respectively.
+
+    1.[C] Which function (A, B, or C) will run fastest for small input sizes? Explain
+
+    2.[C] Which function (A, B, or C) will run fastest for large input sizes? Explain
+
+    3.[C] Suppose these functions all produce the same result, but they are versions of different underlying algorithms. Which of the three algorithms would you prefer to have available, in general? Why?
+
+    4.[C] Suppose these three algorithms were re-implemented in another language, in the context of a different operating system running on different hardware. Would you guess that the running times in the new context would be related to the old running times? If so, how? If not, what assumptions would be needed in order to make a connection?
+
+B. Reading
+We would like to have a precise way of comparing the running times of algorithms without having to worry about the exact constants. For example, we might want to be able to say that 500 n + 500 and n are pretty similar (the graph in each case is a straight line) and to say that 10 n2 + 50 n + 4 is not so similar to n (the graph of the former is curved, not straight.) Luckily, there is a mathematically sound way to do this.
+
+Carefully read Chapter 0 of our textbook (Dasgupta, Papadimitriou, and Vazirani) up to section 0.3
+
+    1.[C] After reading about the different ways of computing the fibonacci sequence and giving it some thought can you come up with an idea for a more efficient algorithm than fib2 on Pg.13?
+
+Now carefully read section 0.3, make sure you understand the definitions! We will be using this extensively.
+
+    2.[C] Prove that 500n + 500 is O(n). Be thorough but don't spend a ton of time on this.
+
+    3.[C] Prove that 2n2 + 1000 is not O(n). That is, show that, no matter what specific value for c is tried, the precise inequality will not be true.
+
+    4.[C] What is a question you have about this reading?
+
+C. More essential definitions
+The definition above is for upper bounds, but the section briefly introduced two more definitions. Here is the corresponding definition for lower bounds, as follows: the statement that f(n) is Omega(g(n)) means that f(n) is always greater than a scaled version of g(n), for some fixed scaling factor. More precisely,
+
+there exists some scaling factor c, such that for any (positive) value of n, f(n) > c*g(n).
+
+Another way of looking at this definition is that f(n) is O(g(n)) means the same thing as g(n) is Omega(f(n)).
+
+    1.[C] Prove that 500n + 500 is Omega(n+1). That is, provide a specific value for the scaling constant c, and then show that, with this value for c, the relevant inequality is true.
+
+    2.[C] Prove that 500n+500 is not Omega(n2). That is, show that, no matter what specific value for c is tried, the relevant inequality will not be true.
+
+Our final definition, the one we want to use as much as possible, is the combination of O and Omega: the statement that f(n) is Theta(g(n)) means that f(n) is O(g(n)) and f(n) is Omega(g(n)), at the same time.
+
+    3.[C] Prove that 500n + 500 is Theta(n). (This should be easy, you have already done the work!)
+
+    4.[C] Prove that 2n2 + 1000 is not Theta(n).
+
+    5.[C] Exercise 0.2, page 9.
+
+D. Recursive Functions
+Consider the following recursive function: (You have seen something similar in a previous homework!)
+
+
+void recursion(int n)
+{
+
+  for(int i=0;i<100;i++)
+  {
+    int x = sin(0.8+0.234);
+  }
+
+  if (n > 0) {
+    recursion(n/2);
+    recursion(n/2);
+  }
+} 
+
+    1.[C] In general, what is the running time of the code in terms of n if we were to run it on the lab computers
+
+    2.[C] Lets call your previous answer f. Now define a function g such that g is O(f), but not Omega(f).
+
+    3.[C] Now define a function g such that g is Omega(f), but not O(f).
+
+    4.[C] Now define a function g that is Theta(f) in simplest terms. (For example, if your function was 20n + 7 then g would be n )
