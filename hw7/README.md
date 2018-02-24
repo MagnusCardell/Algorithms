@@ -50,7 +50,7 @@ I will prove that there is no constant positive integer c such that 2n^2 + 1000 
     4.[C] What is a question you have about this reading?
 
 Is there a solution key for the problems at the end of the chapters available for students? Would love to check my work. Specificially about the reading, I would like to know why fib2 is classified as running in polynomial time. It seem to me that it should run in linear time since the function runs through every object of the list of length n. Would this not be equal to saying O(n). I can't find the reason it should be O(n^k).
-
+1
 C. More essential definitions
 The definition above is for upper bounds, but the section briefly introduced two more definitions. Here is the corresponding definition for lower bounds, as follows: the statement that f(n) is Omega(g(n)) means that f(n) is always greater than a scaled version of g(n), for some fixed scaling factor. More precisely,
 
@@ -60,15 +60,56 @@ Another way of looking at this definition is that f(n) is O(g(n)) means the same
 
     1.[C] Prove that 500n + 500 is Omega(n+1). That is, provide a specific value for the scaling constant c, and then show that, with this value for c, the relevant inequality is true.
 
+The definition of Omega(n) is that f(n) = Omega(g(n)) if c exists such that and f(n) > c*g(n), where c is a positive integer.
+- f(n) = 500n + 500 and g(n) = n+1
+- I want to show that 500n + 500 > c * (n+1)
+- Solving for c, results in: 500n + 500 / (n+1) > c. 
+- Since the function will grow within finity, there exists a constant c that will be smaller than the relationship.
+- For example if n = 1, we get (1000 / 2) > c. One example for c is then c = 1. 
+
     2.[C] Prove that 500n+500 is not Omega(n2). That is, show that, no matter what specific value for c is tried, the relevant inequality will not be true.
+
+Using the definition of Omega(n) where f(n) = 500n + 500 and g(n) = n^2, I want to show that f(n) is not Omega(g(n)) if there is no positive constant c such that 500n + 500 > c * n^2. 
+- Solving for c, gives us an unbound function where the function will grow faster than any constant c. Thus the inequality is not true. 
 
 Our final definition, the one we want to use as much as possible, is the combination of O and Omega: the statement that f(n) is Theta(g(n)) means that f(n) is O(g(n)) and f(n) is Omega(g(n)), at the same time.
 
     3.[C] Prove that 500n + 500 is Theta(n). (This should be easy, you have already done the work!)
 
+First, I will show that 500n + 500 is O(n). From B2 I copy-paste my proof
+Defitinion of Big O says that there exists positive constants c such that f(n) <= c * g(n) for all n. In this case, I want to show that f(n) = 500n + 500 is in the set O(n). 
+- 500n+ 500 < 500n + 500n = 1000n. 
+- So 500n + 500 = O(n) [c = 1000] for all n>1.
+
+Then, I want to show that 500n + 500 is Omega(n) From C1 I copy paste my proof with some modification on g(n)
+The definition of Omega(n) is that f(n) = Omega(g(n)) if c exists such that and f(n) > c*g(n), where c is a positive integer.
+- f(n) = 500n + 500 and g(n) = n
+- I want to show that 500n + 500 > c * (n)
+- Solving for c, results in: 500n + 500 / (n) > c. 
+- Since the function will grow within finity, there exists a constant c that will be smaller than the relationship.
+- For example if n = 1, we get (1000 / 1) > c. One example for c is then c = 1. 
+
+Thus, f(n) = O(n) and Omega(n) which show that f(n) = Theta(n)
+
     4.[C] Prove that 2n2 + 1000 is not Theta(n).
 
+I will use Big O to disprove that 2n^2 + 1000 is not Theta(n)
+- By definition of Big O I want to show that there exists a positive integer c such that 2n^2 + 1000 < c*n.
+- However, given n = 3 and c= 1, we get 1118 < 4 which is not true. 
+- Thus the relation is not true.
+
     5.[C] Exercise 0.2, page 9.
+
+g(n) is expressing the geometric formula g(n) c^(n+1) -1 / (c-1)
+
+a)
+- If c<1, then the lower bound is when n=0: c-1 / c-1 = 1. The upper bound is when n goes to infinity (Take limit): -1 / c-1 (Because a number less than 1 to the power infinity is 0.). Both of these expressions bind the g(n), we can conclude that g(n) = Theta(1). 
+
+b)
+- If c = 1, each term of the geometric series would evaluate to 1. The sum would be n. Therefore g(n) = Theta(n)
+
+c)
+- If c > 1, then the lower bound is when n=0: c-1/c-1 The upper bound is when n goes to infinity (take limit): c^n. Both of these expression bind g(n) so we can conclude that g(n) = Theta(c^n).
 
 D. Recursive Functions
 Consider the following recursive function: (You have seen something similar in a previous homework!)
