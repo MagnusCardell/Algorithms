@@ -1,16 +1,32 @@
 #include <iostream>
 using namespace std;
 
-int fib1( int n ){
-    if (n <= 0) return 0;
-    else if( n == 1 ) return 1;
+//First approach, exponential fibonacci
+// each stack calls two new stacks, of max length n
+// total time complexity is therefore 2^n
+int fib1(int n){
+    if( 0==n ) return 0;
+    if( 1==n ) return 1;
     return fib1(n-1) + fib1(n-2);
 }
 
-//TODO: write fib2 fib3 and fib4
-
-int main(){
-    int fib = fib1(10);
-    cout << "fib1: (10th) "<< fib<<endl;
+//Polynomial fibonacci
+// Linear time O(n)
+int fib2(int n){
+    if( 0==n ) return 0;
+    int arr[n+1];
+    arr[0] = 0;
+    arr[1] = 1;
+    for( int i=2; i<n+1; ++i) {
+        arr[i] = arr[i-1] + arr[i-2];
+    }
+    return arr[n];
 }
-// Each node calls 2 more nodes n times. so O(n) = 2^n
+int main(){
+    int num =0;
+    cin >> num;
+    int result = fib1(num);
+    cout << "Exponential time: "<< result<<endl;
+    result = fib2(num);
+    cout << "Polynomical time: "<< result <<endl;
+}
