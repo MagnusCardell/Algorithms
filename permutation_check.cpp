@@ -8,6 +8,7 @@
 using namespace std;
 
 //Clean version, checking that every value is equal. Also equal length
+// Time complexity O(n log n) because of std::sort()
 bool isPermutation(string in, string p){
     if( p.length() == 0 or in.length() ==0 or in.length()!=p.length()){
         cout<<"none"<<endl;
