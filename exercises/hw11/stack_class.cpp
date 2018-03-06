@@ -3,39 +3,48 @@ using namespace std;
 
 class Stack{
     int *array;
+    int LIFO_tracker;
+    int MAX;
 
 public:
-    Node(char c){
-        value=c;
+    Stack(int n){
+        array = new int(n);
+        LIFO_tracker = 0;
+        MAX = n;
     }
 
-    void addChild(Node n){
-        children.push_back(n);
-        return;
+    int push(int n){
+        if(LIFO_tracker >= MAX){
+            return -1;
+        }
+        array[LIFO_tracker] = n;
+        LIFO_tracker++;
     }
 
-    void addChild(char n){
-        Node foo(n);
-        children.push_back(foo);
+    int pop(){
+        if(LIFO_tracker < 0){
+            return -1;
+        }
+        array[LIFO_tracker-1] = 0;//Or other null value... this is not really necessary as long as LIFO_tracker decrements. 
+        LIFO_tracker--;
     }
 
-    char getValue(){
-        return value;
-    }
-
-    vector<Node> getChildren(){
-        return children;
-    }
-
-    bool isLeaf(){
-        return children.size()==0;
-    }
-
-    bool operator==(Node b){
-        return b.value==value;
+    int doPeek(){
+        return array[LIFO_tracker-1];
     }
 };
 
 int main(){
+    int N = 10;
+    Stack LIFO(N);
+    
+    for( int i=0; i< N; ++i){
+        LIFO.push(i);
+        //cout<<LIFO.doPeek()<<endl;
+    }
 
+    for( int i=0; i< N; ++i){
+        LIFO.pop();
+        //cout<<LIFO.doPeek()<<endl;
+    }
 }
