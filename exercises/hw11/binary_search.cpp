@@ -1,7 +1,6 @@
 #include <iostream>
 using namespace std;
 #include <stdlib.h>
-#include <algorithm>
 
 int *initializeArray(int N)
 {
