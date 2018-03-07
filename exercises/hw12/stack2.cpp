@@ -1,10 +1,8 @@
 #include <iostream>
 using namespace std;
 /*
-1. Implement a stack based on a dynamically allocated array, in such a way that the stack can handle an arbitrary number of items. 
-Use the reallocation policy that when the current array gets full, create a new array that is 100 elements longer than the current array, 
-and copy information from one array to the other, before deallocating. Your allocation should rely on the standard C++ new operator. 
-Please submit the code through git.
+2. Implement a stack based on an array, but this time double the size of the array each time it gets full. 
+    Please submit the code through git.
 */
 /* To explain my code, I initiate the stack with a default size of n = 5. At reach the max size, a new array is created of size 2n. 
     Every element in the first array is then copied to that new array and the old is deleted. 
