@@ -23,8 +23,11 @@ B. Binary search
 
     1. Create an array of random integers, sort them, and then use binary search to find the index of some particular value. Please write the binary search part of the code from scratch. Please submit the C++ code via git. 
 
+see binary_serach.cpp
 
     2. Create a vector of strings, such that the strings are in alphabetical order. It is ok to hard-code a set of strings that are already in alphabetical order. Then create a binary search function that works to find a particular word among the vector of strings, similar to your first binary search. Please submit the C++ code via git. 
+    
+see binary_search_letters.cpp
 
 C. Reading
 
