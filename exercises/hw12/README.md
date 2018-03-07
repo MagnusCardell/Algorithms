@@ -3,19 +3,31 @@ A. Review
 
     1.[C] Let us assume that f(n) is O(g(n)), and also that g(n) is O(f(n)). Under these assumptions, is f(n) necessarily Theta(g(n))? Please write a proof or find a specific counter-example.
 
+Here is my thinking. If g(n) = O(f(n)), then g(n) <= f(n). Similarly, if f(n) = O(g(n)) , then f(n) <= g(n). Therefore, g(n) = f(n) which is the definition of Theta, this f(n) = Theta(g(n)).
+
+
 B. Reading
 
     1. Please read about the STL version of a stack
+
+Read it!
 
 C. Exercises
 
     1. Implement a stack based on a dynamically allocated array, in such a way that the stack can handle an arbitrary number of items. Use the reallocation policy that when the current array gets full, create a new array that is 100 elements longer than the current array, and copy information from one array to the other, before deallocating. Your allocation should rely on the standard C++ new operator. Please submit the code through git.
 
+see stack1.cpp
+
     2. Implement a stack based on an array, but this time double the size of the array each time it gets full. Please submit the code through git.
+stack2.cpp
 
     3. Implement a stack based on a linked list. Please submit the code through git.
 
+linkedlist_stack.cpp
+
     4. Make an STL stack. Please submit the code through git.
+
+see stl_stack.cpp
 
     5.[C] Time all four implementations: what is the average number of cycles required per push when pushing less than twenty elements? Less than a thousand? Less than a million?
 
