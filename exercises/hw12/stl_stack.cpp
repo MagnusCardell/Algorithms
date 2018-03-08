@@ -2,19 +2,28 @@
 #include "../hw1/elapsed_time.h"
 using namespace std;
 /*
-2. Implement a stack based on an array, but this time double the size of the array each time it gets full. 
-    Please submit the code through git.
+Implement an STL stack
 */
-/* To explain my code, I initiate the stack with a default size of n = 5. At reach the max size, a new array is created of size 2n. 
-    Every element in the first array is then copied to that new array and the old is deleted. 
-    See expand_size() and uncomment the cout statements for troubleshooting.
+/* 
+This is a similar implementation to my stack1 and stack2 programs. Using the doubling in size when full, 
+I will let the array keep track of all values. 
 */
 class Stack{
+    int size;
     int *array;
-    int LIFO_tracker;
+    int LIFO_tracker; //doubles as a size indicator
     int MAX;
     static const int first_size = 5;
 
+private:
+    void expand_stack(){    
+        int *temp_arr = new int(MAX * 2);
+        for(int i=0; i<MAX; ++i){
+            temp_arr[i] = array[i];
+        }
+        *array = *temp_arr;
+        MAX *= 2;
+    }
 public:
     Stack(){
         array = new int(first_size); 
@@ -23,11 +32,10 @@ public:
     }
 
     int mypush(int n){
-        int old_max = MAX;
         if(LIFO_tracker >= MAX){
             expand_stack();
         }
-        //cout<<MAX<<" "<<old_max<<endl;
+        //cout<<"Expanded size... "<<MAX<<endl;
 
         array[LIFO_tracker] = n;
         LIFO_tracker++;
@@ -45,14 +53,6 @@ public:
         return array[LIFO_tracker-1];
     }
 
-    void expand_stack(){
-        int *temp_arr = new int(MAX * 2);
-        for(int i=0; i<MAX; ++i){
-            temp_arr[i] = array[i];
-        }
-        *array = *temp_arr;
-        MAX *= 2;
-    }
 };
 
 int main(){
@@ -65,6 +65,10 @@ int main(){
         //cout<<LIFO.doPeek()<<endl;
     }
 
+    for( int i=0; i< N; ++i){
+        LIFO.mypop();
+        //cout<<LIFO.doPeek()<<endl;
+    }
     double cycles = elapsed_time(); // also from elapsed_time.h
 
     cout << " Total cycles: " << cycles << endl;

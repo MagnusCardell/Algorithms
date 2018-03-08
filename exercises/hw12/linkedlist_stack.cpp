@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include "../hw1/elapsed_time.h"
 using namespace std;
 /*
 3. Implement a stack based on a linked list. 
@@ -44,9 +45,7 @@ class Stack
 
     void mypop()
     {
-        if (tracker == NULL)
-        {
-        }
+        if (tracker == NULL){}
         else
         {
             class Stack *temp = tracker;
@@ -63,8 +62,9 @@ class Stack
 
 int main()
 {
+    start_timer(); // this function is from elapsed_time.h
     int N = 10;
-    Stack linklist(-1);
+    Stack linklist(0);
 
     for (int i = 0; i < N; ++i)
     {
@@ -72,9 +72,7 @@ int main()
         //cout<<linklist.doPeek()<<endl;
     }
 
-    for (int i = 0; i < N; ++i)
-    {
-        linklist.mypop();
-        //cout<<linklist.doPeek()<<endl;
-    }
+    double cycles = elapsed_time(); // also from elapsed_time.h
+
+    cout << " Total cycles: " << cycles << endl;
 }

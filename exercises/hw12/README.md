@@ -31,6 +31,14 @@ see stl_stack.cpp
 
     5.[C] Time all four implementations: what is the average number of cycles required per push when pushing less than twenty elements? Less than a thousand? Less than a million?
 
+Fixed size stack - 2800/10 = 280 per push
+Double size stack - 3200/10 = 320 per push
+Linked list stack - 610/10 = 61 per push
+STL stack  - 2900/10 = 290 per push
+
+
+clearly less than a thousand per push. 
+
     6.[C] With a friend, analyze and explain the results of your experiments, both in terms of constant factors and asymptotic complexity. Please put your results and analysis on two slides that you can share during class.
 
 D. Reading 2
@@ -41,6 +49,17 @@ E. Exercises 2
 
     1.[C] Exercise 3.6, page 96.
 
+In an undirected graph, that the sum of all verteces is equal to the cardinality of all edges multiplied by 2. This is because every edge has to symbolice both ingoing and outgoing degrees. Therefore the sum of all verteces is its edges multiplied by 2.
+
     2.[C] Exercise 3.26, page 100.
 
+a) Assume there is a graph for the Koningsberg bridge problem. I then want to prove that all vertices has an even degree. All verteces must be distinct and each vertece needs to be used. A node with k number of verteces must therefore be visited k times. This concludes that there must be an even number of verteces. Because the total number of verteces is 13, not all bridges will be used. Therefore there is no Eulerian tour. 
+
+b) An undirected graph is an Eulerian tour if and only if every every path is distinct and only visited once. 
+
+c) An undirected graph distinguished between ingoing verteces and outgoing verteces. A Eulerian path must therefore show an equal amount of outgoing as ingoing paths in order for every path to be able to visited. This show that the total number of verteces must be even, thus it supports there being no Eulers path on the Koningsberg bridges. 
+
     3.[C] Exercise 3.27.
+
+By definition of an edge-disjoin path, such a path can be found between pairs with uneven number of vertices. 
+Given that every node has 2n+1 vertices, and a total of k nodes. The total number of nodes is then 2nk + k number of vertices. In an undirected graph, every vertice can be used as either ingoin or outgoing. By the definition of an edge-disjoin path every node needs to be joine by two distinct paths. This requires there to be even number of nodes. So we have left k to distribute over k nodes. Because 2n vertices already have been distribued, every node can be layered one extra bridge that will still keep the edge-disjoint property and so finish up all vertices. 
