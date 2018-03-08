@@ -7,8 +7,8 @@ Please submit the code through git.
 */
 /* To explain my code, I create a node class that have 3 values, value, prev, next. So this will be a doubly linked linked list
     - value = value for that list
-    - prev = previous node in the list
     - next = next node in the list
+    - tracker = keeping track of current value in stack.
     Then I create a linked list with a root
 */
 
