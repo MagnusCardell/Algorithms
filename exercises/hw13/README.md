@@ -120,14 +120,63 @@ E (11,12)
 B (14,16)
 
 Which gives the following topological sort: B-A-C-E-D-F-H-G (decresing order of post vertex values)
+a) See above
+b) (A,B) are sources. (G,H) are sinks.
+c) See above
+d)  A or B 
+    C
+    D or E
+    F
+    G or H
+
+    8 possible combinations.
+
 
     4.[C] Exercise 3.5.
 
+function giveRev(tree root){
+    if (root == null) return;
+    vector<tree> result;
+    for vertex in tree[root]{
+        result.push(vertex);
+        if(tree[vertex] not in result) {
+            result.push(giveRev(tree, tree[vertex]))
+        }
+    }
+    return result;
+}
 
 
     5.[C] Exercise 3.9, page 97.
 
+Given an adjacency list. The hard part is doing this is linear time. But I think, doing a DFS search on all unvisited nodes, should return a linear search, visiting each node once. 
+
+function countNeighbours(Tree, u){
+    Tree[u] = visitied;
+    for ( v in Tree[u]){
+        if(Tree[v] != visited ){
+            DFS(Tree, v)
+        }
+        twodegree[u] += len(Tree[v]);
+    }
+}
+
+
     6.[C] Exercise 3.11.
+
+search(Tree, e){
+    stack<nodes> dfs;
+    dfs.push(Tree[0]);
+    while (!dfs.empty()){
+        node t = dfs.top();
+        dfs.pop()
+
+        for( v in t){
+            if (t[v] == e) return True; //If there is an edge matchin, return true,
+            dfs.push(t[v]);
+        }
+    }   
+}
 
     7. Write a C++ program that can read in a graph, storing it internally as an adjacency-list. It is fine to use vectors, if you so choose. Here is an example input file (DIMACS format):
 
