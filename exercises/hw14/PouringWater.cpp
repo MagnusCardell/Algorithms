@@ -3,6 +3,9 @@
 #include <vector>
 #include <map>
 #include <queue>
+// To compile, we use c++11 specifically for its to_string() method
+// use this:
+// g++ -std=c++11 PouringWater.cpp -o PouringWater.o   
 
 using namespace std;
 
