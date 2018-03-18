@@ -27,46 +27,58 @@ class Node{
     vector<string> path;
 
 public:
-    Node(int ten, int seven, int four){
-        currState = new int*[3];
-        for(int i=0; i<3; ++i){
+    Node(int a, int b, int c, int d, int e){
+        currState = new int*[5];
+        for(int i=0; i<5; ++i){
             currState[i] = new int[2];
         }
-        currState[0][0]=ten;
-        currState[0][1]=10;
-        currState[1][0]=seven;
-        currState[1][1]=7;
-        currState[2][0]=four;
-        currState[2][1]=4;
+        currState[0][0]=a;
+        currState[0][1]=23;
+        currState[1][0]=b;
+        currState[1][1]=29;
+        currState[2][0]=c;
+        currState[2][1]=31;
+        currState[3][0]=d;
+        currState[3][1]=37;
+        currState[4][0]=e;
+        currState[4][1]=41;
 
         path.push_back(this->getKey());
     }
     Node(int **curr, Node p){
-        currState = new int*[3];
-        for(int i=0; i<3; ++i){
+        currState = new int*[5];
+        for(int i=0; i<5; ++i){
             currState[i] = new int[2];
         }
-        for(int i=0; i<3; ++i){
+        for(int i=0; i<5; ++i){
             for(int j=0; j<2; ++j){
                 currState[i][j]=curr[i][j];
             }
         }
-    path = p.path;
-    path.push_back(this->getKey());
+        path = p.path;
+        path.push_back(this->getKey());
     }
 
     vector<int**> genState(){
         //Generate all valid neightbours
         vector<int**> neighbours;
-        bool next[] = {true, true, true, true, true, true};
-        int pos[6][2] = {{0,1},{0,2},{1,2},{1,0},{2,0},{2,1}};
+        bool next[] = {true, true, true, true, 
+                        true, true, true, true,
+                        true, true, true, true,
+                        true, true, true, true,
+                        true, true, true, true};
+        int pos[24][2] = {{0,1},{0,2},{0,3},{0,4},   //23
+                        {1,0},{1,2},{1,3},{1,4},    //29
+                        {2,0},{2,1},{2,3},{2,4},    //31
+                        {3,0},{3,1},{3,2},{3,4},    //37
+                        {4,0},{4,1},{4,2},{4,3}};   //41
         int j = 0;
         
-        while(j<3){
+        while(j<5){
             /*if cup is full, all situations is is poured into
                 are false*/
             if(currState[j][0]==currState[j][1]){
-                for(int w = 0; w < 6; w++){
+                for(int w = 0; w < 24; w++){
                     if(pos[w][1]==(j))
                         next[w]=false;
                 }
@@ -74,7 +86,7 @@ public:
             /*if cup is empty, all situations is is poured from
                 are false*/
             if(currState[j][0]==0){
-                for(int w = 0; w < 6; w++){
+                for(int w = 0; w < 24; w++){
                     if(pos[w][0]==(j))
                         next[w]=false;
                 }
@@ -83,13 +95,13 @@ public:
         }
         //cout << "here1"<<endl;
         int i = 0;
-        while(i < 6){
-            int **temp = new int*[3];
-            for(int k=0; k<3; ++k){
+        while(i < 24){
+            int **temp = new int*[5];
+            for(int k=0; k<5; ++k){
                 temp[k] = new int[2];
             }
 
-            for(int m = 0; m < 3; m++){
+            for(int m = 0; m < 5; m++){
                 for(int n = 0; n < 2; n++)
                     temp[m][n]=currState[m][n];
                 //cout << "hi"<<endl;
@@ -130,8 +142,14 @@ public:
         string k = "";
 
         k += std::to_string(currState[0][0]);
+        k += " ";
         k += std::to_string(currState[1][0]);
+        k += " ";
         k += std::to_string(currState[2][0]);
+        k += " ";
+        k += std::to_string(currState[3][0]);
+        k += " ";
+        k += std::to_string(currState[4][0]);
         return k;
     }
 
@@ -139,7 +157,7 @@ public:
     //    return b.currState.A==currState.A; // add in checks for B and C
     //}
     void printIt(int **t) {
-        for(int i = 0; i < 3; i++){
+        for(int i = 0; i < 5; i++){
             for(int j = 0; j < 2; j++) {
                 cout << t[i][j]<<" ";
             }
@@ -148,7 +166,7 @@ public:
     }
 
     void printIt() {
-        for(int i = 0; i < 3; i++){
+        for(int i = 0; i < 5; i++){
             for(int j = 0; j < 2; j++) {
                 cout << currState[i][j]<<" ";
             }
@@ -191,7 +209,7 @@ void breadthFirstSearch(Node root){
         FIFO_stack.pop();
         cout << "queue " << ctr << endl;
 
-        if(temp.getState(1) == 2 or temp.getState(2) == 2){
+        if(temp.getState(2) == 4 and temp.getState(3) == 4 and temp.getState(4) == 4){
             temp.printPath();
             cout<< "found it"<<'\n'<<endl;
             return;
@@ -215,8 +233,8 @@ void breadthFirstSearch(Node root){
     return;
 }
 int main(){
-    Node root(0,7,4);
-   
+    Node root(23,0,0,0,41);
+
     breadthFirstSearch(root);
     
 
