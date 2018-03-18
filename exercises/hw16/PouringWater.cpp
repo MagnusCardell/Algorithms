@@ -10,7 +10,7 @@
 using namespace std;
 
 void printNOde(vector<int**> p){
-    for(int m=0; m<p.size(); ++m){
+    for(int m=0,m_end=p.size(); m<m_end; ++m){
         for(int i = 0; i < 3; i++){
                 for(int j = 0; j < 2; j++) {
                     cout << p[m][i][j]<<" ";
@@ -157,7 +157,7 @@ public:
     }
 
     void printPath(){
-        for(int i=0; i<path.size(); ++i){
+        for(int i=0,i_end=path.size(); i<i_end; ++i){
             cout<<path[i]<<endl;
         }
     }
@@ -193,7 +193,8 @@ void breadthFirstSearch(Node root){
 
         if(temp.getState(1) == 2 or temp.getState(2) == 2){
             temp.printPath();
-            cout<< "found it"<<'\n'<<endl;;
+            cout<< "found it"<<'\n'<<endl;
+            return;
         }
         children = temp.genState();
         //printNOde(children);
