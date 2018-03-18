@@ -14,6 +14,7 @@ struct Graph{
     vector<struct Node> tree;
     Node* root;
 
+    Graph(){};
     Graph(Node &r);
     void addRoot(Node *r);
     Node *getRoot();
@@ -111,39 +112,68 @@ void printdoc(DIMACS &d){
 void printCTRL(map<string, vector<string> > &m){
     for ( auto const& it : m) {
         cout << it.first
-            << ':'
-            << it.second.size()
-            << endl ;
+            << ": [";
+        for( string s : it.second ){
+            cout<< s <<" ";
+        }
+        cout<<"]" << endl ;
+    }
+}
+void printGraph(Graph &g){
+    for( int i=0, i_end=g.tree.size(); i<i_end; ++i){
+        cout<<g.tree[i].getVal()
+            <<": ";
+        vector<Node> n = g.tree[i].getNeighbours();
+        for(int j=0, j_end=n.size();j<j_end; ++j){
+            cout<< n[j].getVal()<< ", ";
+        }
+        cout<<endl;
     }
 }
 int main()
 {
     ifstream f("graph.txt");
     //vector <string> DIMAC;
-    DIMACS doc;
     map<string, vector<string> > dimac_ctrl;
-
-    Node root;
-    Graph tree(root);
 
     string line;
     bool firstline =true;
     while ( getline(f, line) ) {
         vector<string> word = split(line);
         //testline(word);
+        //DIMACS doc;
         
         if(firstline){
-            doc.nodes = stoi(word[2]);
-            doc.edges = stoi(word[3]);
+            //doc.nodes = stoi(word[2]);
+            //doc.edges = stoi(word[3]);
             firstline = false;
         }
         else{
             //cout<<word[1]<<" "<<word[2]<<endl;
             dimac_ctrl[word[1]].push_back(word[2]);
         }
-
+        //printdoc(doc);
     }
-    //printdoc(doc);
     //printCTRL(dimac_ctrl);
     f.close();
+
+    //ASSERT that the DIMACS file is parsed into map and we are now going to do the graph
+    Graph g;
+    bool first_item = true;
+    
+    for ( auto const& it : dimac_ctrl) {
+        Node temp(stoi(it.first));
+        for( string s : it.second ){
+            temp.addNeighbour(stoi(s));
+        }
+        if(first_item){
+            g = Graph(temp);
+            first_item=false;
+        }
+        else{
+            g.tree.push_back(temp);
+        }
+    }
+
+    printGraph(g);
 }
