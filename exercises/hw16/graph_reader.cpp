@@ -1,7 +1,14 @@
 #include<vector>
 #include<iostream>
 #include<fstream>
+#include<string>
+#include<map>
 using namespace std;
+
+struct DIMACS{
+    int nodes;
+    int edges;
+};
 
 struct Graph{
     vector<struct Node> tree;
@@ -91,28 +98,52 @@ vector<string> split(const string &line, const char *delim = " \t")
   return word;
 }
 
-void testDIMAC(vector<string> &word){
+void testline(vector<string> &word){
     for ( unsigned i=0,i_end=word.size(); i<i_end; ++i )
         cout << "," << word[i];
     cout << endl;
     return;
 }
-
+void printdoc(DIMACS &d){
+    cout<< "nodes: " << d.nodes
+        << ". edges: " << d.edges<<endl;
+}
+void printCTRL(map<string, vector<string> > &m){
+    for ( auto const& it : m) {
+        cout << it.first
+            << ':'
+            << it.second.size()
+            << endl ;
+    }
+}
 int main()
 {
     ifstream f("graph.txt");
-    vector <string> DIMAC;
+    //vector <string> DIMAC;
+    DIMACS doc;
+    map<string, vector<string> > dimac_ctrl;
 
     Node root;
     Graph tree(root);
 
     string line;
+    bool firstline =true;
     while ( getline(f, line) ) {
         vector<string> word = split(line);
-        //testDIMAC(word);
-        DIMAC.push_back(word[0]);
+        //testline(word);
         
-        
+        if(firstline){
+            doc.nodes = stoi(word[2]);
+            doc.edges = stoi(word[3]);
+            firstline = false;
+        }
+        else{
+            //cout<<word[1]<<" "<<word[2]<<endl;
+            dimac_ctrl[word[1]].push_back(word[2]);
+        }
+
     }
+    //printdoc(doc);
+    //printCTRL(dimac_ctrl);
     f.close();
 }
