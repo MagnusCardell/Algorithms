@@ -3,6 +3,7 @@
 #include<fstream>
 #include<string>
 #include<map>
+#include<queue>
 using namespace std;
 
 struct DIMACS{
@@ -12,12 +13,12 @@ struct DIMACS{
 
 struct Graph{
     vector<struct Node> tree;
-    Node* root;
+    Node *root;
 
     Graph(){};
     Graph(Node &r);
     void addRoot(Node *r);
-    Node *getRoot();
+    Node* getRoot();
 };
 
 Graph::Graph(Node &r){
@@ -44,7 +45,7 @@ struct Node{
     int getVal();
     vector<Node> getNeighbours();
     bool isLeaf();
-    bool operator==(Node &b);
+    bool operator==(int b);
 };
 
 Node::Node(int v){
@@ -77,8 +78,8 @@ bool Node::isLeaf(){
     return this->neighbours.size()==0;
 }
 
-bool Node::operator==(Node &b){
-    return b.val==this->val;
+bool Node::operator==(int b){
+    return b==this->val;
 }
 
 vector<string> split(const string &line, const char *delim = " \t")
@@ -130,6 +131,37 @@ void printGraph(Graph &g){
         cout<<endl;
     }
 }
+
+string breadth_first_search(Graph &g){
+    cout<<"What value are you looking for (type 2)"<<endl;
+    int goal;
+    cin>>goal; //TODO add checks and balances here
+
+    queue<Node> Q;
+    vector<Node> children;
+    string path = "";
+
+    Node root =  g.tree[0];
+    Q.push(root);
+
+    while(!Q.empty()){
+        Node t = Q.front();
+        path += to_string(t.getVal());
+        Q.pop();
+
+        if(t == goal){
+            cout<<"FOUND IT"<<endl;
+            return path;
+        }
+        children = t.getNeighbours();
+        for(int i =0, i_end=children.size(); i< i_end; ++i){
+            Q.push(children[i]);
+        }
+    }
+    cout<<"Did not find it :( "<<endl;
+    return path;
+
+}
 int main()
 {
     ifstream f("graph.txt");
@@ -174,6 +206,12 @@ int main()
             g.tree.push_back(temp);
         }
     }
-
+    cout<<"This is the graph: "<<endl;
     printGraph(g);
+
+    //ASSERT that graph is constructed, now I do BFS on it :D
+    string path = breadth_first_search(g);
+    cout<<path<<endl;
+
+    return 0;
 }
