@@ -3,8 +3,7 @@ Repository for my algorithms course
 
 
 Big O definition:
-
-Defitinion of Big O says that there exists positive constants c such that f(n) <= c * g(n) for all n.
+Let f(n) and g(n) be functions from positive integers to positive reals. We can say that f = O(g) if there is a constant c > 0 such that f <= c * g(n). 
 
 Master theorem:
 
