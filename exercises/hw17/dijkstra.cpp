@@ -9,26 +9,74 @@ using namespace std;
 
 struct Node{
     string name;
+    int val = 0;
+    int dist;
     Node *parent;
-    int dist = INF;
+    //int dist = INF;
     bool visited;
-    map<string, vector<int> > neighbours;
-
+    //map<string, vector<int> > neighbours;
+    Node(){};
     Node(string n){name = n;};
-    void add_neighbours(string to, int len);
+    //void add_neighbours(string to, int len);
 };
-
+/*
 void Node::add_neighbours(string to, int len){
     if(neighbours.count(to) <= 0){
-        cout<<"excisting key"<<endl;
+        cout<<"N: excisting key"<<endl;
         neighbours[to].push_back(len);
     }
     else{
-        cout<<"new key"<<endl;
+        cout<<"N: nw key"<<endl;
         neighbours[to].push_back(len);
     }
 }
+*/
+typedef std::map<string, Node> my_map;
 
+struct Graph{
+    Node root;
+    map <string, vector<Node> > tree;
+    vector<Node> vertices;
+
+    Graph(){};
+    void add_neighbour(Node from, Node to, int len);
+    void print_map();
+};
+
+void Graph::add_neighbour( Node from, Node to, int len){
+
+    for ( auto const& it : tree) {
+        if(it.first)
+            << ": [";
+        for( Node s : it.second ){
+            cout<< s.name <<": "<<s.dist<<' ';
+        }
+        cout<<"]" << endl ;
+    }
+
+    if(tree.count(from.name) <= 0){
+        cout<<"N: new key"<<endl;
+        vertices.push_back(from);
+        to.dist = len;
+        tree[from.name].push_back(to);
+    }
+    else{
+        cout<<"N: existing key"<<endl;
+        to.dist = len;
+        tree[from.name].push_back(to);
+    }
+}
+
+void Graph::print_map(){
+    for ( auto const& it : tree) {
+        cout << it.first
+            << ": [";
+        for( Node s : it.second ){
+            cout<< s.name <<": "<<s.dist<<' ';
+        }
+        cout<<"]" << endl ;
+    }
+}
 /*
 struct Graph{
     Node root;
@@ -68,34 +116,35 @@ void print_graph(Graph *g){
 
 //Construct method, to initialize a graph by hand
 //I am recreating the graph from the book p.111
-void construct_graph(Node *A){
+void construct_graph(Graph *g){
+    Node A("A");
     Node B("B");
     Node C("C");
     Node D("D");
     Node E("E");
 
-    A->add_tree("B", 4);
-    A->add_tree("C", 2);
-    B.add_tree("C", 3);
-    B.add_tree("D", 2);
-    B.add_tree("E", 3);
-    C.add_tree("B", 1);
-    C.add_tree("D", 4);
-    C.add_tree("E", 5);
-    E.add_tree("D", 1);
+    g->add_neighbour(A, B, 4);
+    g->add_neighbour(A, C, 2);
+    g->add_neighbour(B, C, 3);
+    g->add_neighbour(B, D, 2);
+    g->add_neighbour(B, E, 3);
+    g->add_neighbour(C, B, 1);
+    g->add_neighbour(C, D, 4);
+    g->add_neighbour(C, E, 5);
+    g->add_neighbour(E, D, 1);
     return;
 }
 
-/*
-void do_dijkstra( Node *r){
+
+void do_dijkstra( Graph *g){
     cout<<"Starting Dijkstra's shortest path algorithm"<<endl;
 
     // 1. Set all values to infinite
-    for( int i=0, i_end=g->tree.size(); i<i_end; ++i){
-        r->tree[i].val = INF;
-        g->tree[i].parent = NULL;
+    for( int i=0, i_end=g->vertices.size(); i<i_end; ++i){
+        g->vertices[i].val = INF;
+        cout<<g->vertices[i].name<<" "<<g->vertices[i].val<<endl;
     }
-    
+    /*
 
     // 2. Create a lookup table 
     vector <Node*> queue;
@@ -139,18 +188,17 @@ void do_dijkstra( Node *r){
         cout<<queue.size()<<endl;
         //Node *temp = dist[0];
     }
-
+*/
     return;
 }
-*/
+
 int main(){
 
-    Node root("A");
-    construct_graph(&root);
-    print_node(&root);
-    cout<<root.tree.size()<<endl;
-    //print_graph(&g);
+    Graph g;
+    construct_graph(&g);
+    print_node(&g.root);
+    g.print_map();
 
-    //do_dijkstra(&root);
+    do_dijkstra(&g);
 
 }
