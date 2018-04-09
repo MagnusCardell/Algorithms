@@ -36,8 +36,18 @@ G - D: 5
 ... all nodes are connected, all remaining edges will be ignored
 Sum: 19
 
-b)
-If instead of E-B we chose F-B since both have the same weight, it would create an equally minimmized tree. So there are 2 minimum spanning trees.
+b) If instead of E-B we chose F-B since both have the same weight, it would create an equally minimmized tree. So there are 2 minimum spanning trees.
+
+c) When the edges are added, they are already sorted by weight value in increasing order. This is the resulting adding 
+
+(node A, node B, weight)
+(A, E, 1)
+(E, F, 6)
+(B, E, 2)
+(F, G, 3)
+(G, H, 3) 
+(C, G, 4)
+(D, F, 5)]
 
     2.[C] Exercise 5.4, page 148.
 
