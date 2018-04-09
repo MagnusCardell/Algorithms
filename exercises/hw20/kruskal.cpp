@@ -3,8 +3,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-typedef pair<int, int> iPair;
-typedef pair<int, iPair> edge;
+typedef pair<int, int> Edge;
+typedef pair<int, Edge> edge;
 
 struct Node
 {
