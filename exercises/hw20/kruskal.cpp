@@ -114,6 +114,7 @@ int main(){
   cout << "There is a backedge in the graph: " << giraffe2.dfs(0) << endl;
   //tests dfs with back edges
 
+  /*
   Graph krusker(6, 7);
   krusker.newEdge(0, 1, 1);
   krusker.newEdge(0, 2, 3);
@@ -123,19 +124,24 @@ int main(){
   krusker.newEdge(3, 5, 3);
   krusker.newEdge(4, 5, 4);
   int mstweight = krusker.krusk();
-
-  /*
-  krusker.newEdge(0, 1, 5); //from book
-  krusker.newEdge(0, 2, 6);
-  krusker.newEdge(0, 3, 4);
-  krusker.newEdge(1, 2, 1);
-  krusker.newEdge(1, 3, 2);
-  krusker.newEdge(2, 4, 2);
-  krusker.newEdge(2, 5, 5);
-  krusker.newEdge(2, 6, 3);
-  krusker.newEdge(3, 5, 4);
-  krusker.newEdge(4, 5, 4);
   */
+  
+  Graph krusker(8,13);
+  krusker.newEdge(0, 1, 6); //from book
+  krusker.newEdge(0, 4, 1);
+  krusker.newEdge(1, 4, 2);
+  krusker.newEdge(1, 5, 2);
+  krusker.newEdge(1, 2, 5);
+  krusker.newEdge(2, 3, 6);
+  krusker.newEdge(2, 5, 5);
+  krusker.newEdge(2, 6, 4);
+  krusker.newEdge(3, 6, 5);
+  krusker.newEdge(3, 7, 7);
+  krusker.newEdge(4, 5, 1);
+  krusker.newEdge(5, 6, 3);
+  krusker.newEdge(6, 7, 3);
+  int mst = krusker.krusk();
+  
 
   return 0;
 }
