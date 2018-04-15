@@ -41,8 +41,6 @@ With 2 insertions, and 2 substitutions
 
     2. Implement the edit distance algorithm given in the book, and check your result for anagram and agnar. Please submit your code through git.
 
-
-
     3. The edit distance between two words can be defined in many ways. Suppose that the cost of a substitution is half the cost of an insertion or deletion. Modify your algorithm to compute this revised edit distance, and test with the same word pair.
 
     4. Revise your program once more to find the longest common subsequence between two words. In this case, substitution is not allowed per se, but insert and delete are. Check the video above for an example and more info on it!
