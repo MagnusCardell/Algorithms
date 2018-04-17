@@ -14,9 +14,16 @@ B. Exercises
 
     4.[C] Exercise 6.1, page 177.
 
+Outer loop, goes over every number in the orignal_array(OA). Creates an array of sums the size of the OA. The algorithm then adds the sum of the current index of the outer loop. The inner loop then starts, comparing maxsum of the current index to all other previous maxsums in the OA. If the current index gives a new maxsum, update that variable. When both loops are finished, return the maxsum. 
+
     5.[C] Exercise 6.2.
 
+The problem is that we want to minimize the penalty  and maximum the number of miles you can travel. The subproblem is that we want to figure out if it is more effective to rest at the current specific spot, or the next spot. Using a modified edit-distance algorithm, I can imagine setting up the algorithm to find the shortest path (minimum penalty) between route A and B where a displacement is equal the penalty of stopping. 
+So, using the edit-distance algorithm, at any point we risk a penalty of p[i-1] + (200−(aj−ai))^2 where aj,ai=subproblems and j<i.
+
     6.[C] Exercise 6.3.
+
+
 
     7.[C] Exercise 6.8, page 179.
 
