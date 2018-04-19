@@ -76,6 +76,8 @@ Biggest investment with current budget is PM and TVIX at 93.905
 
     4.[C] Consider the problem instance given in the knapsack section, where W=10. To 'shrink' the problem, the book suggests either considering smaller capacities or fewer items. Does it work if you consider fewer items? If it works, what are the sub-problems and what DAG do you get for this instance? If it doesn't work, why not?
 
+I'm not sure if I interpret the question correctly but I would assume that considering fewer items is only effective in a 1/0 knapsack. So that the W*n time complexity gets smaller by the nature of W being smaller. The underlying problems is to find the max value of all combinations of items. So if I am considering item i, I can either replace i-1, j-1, or i-1,j-1. Similarly to the edit distance problem. By always picking the largest, a path can be found that maximizes the "loot".
+
     5.[C] Another idea is to instead 'shrink' the dollar value of the items in the knapsack. Does this approach also work? If it works, what are the sub-problems and what DAG do you get for this instance? If it doesn't work, why not?
 
     6.[C] Exercise 6.17 (change-making).
