@@ -3,7 +3,7 @@
 #include<fstream>
 #include<string>
 #include<map>
-#include<queue>
+#include<stack>
 using namespace std;
 
 struct DIMACS{
@@ -19,8 +19,6 @@ struct Graph{
     Graph(Node &r);
     void addRoot(Node *r);
     Node* getRoot();
-    bool isCyclicUtil(int v, bool visited[], bool *recStack);
-    bool isCycle();
 };
 
 Graph::Graph(Node &r){
@@ -33,30 +31,6 @@ void Graph::addRoot(Node *r){
 }
 Node* Graph::getRoot(){
     return root;
-}
-
-bool Graph::isCyclicUtil(int v, bool visited[], bool *recStack) {
-    if(visited[v] == false)
-    {
-        // Mark the current node as visited and part of recursion stack
-        visited[v] = true;
-        recStack[v] = true;
- 
-        // Recur for all the vertices adjacent to this vertex
-
-        for(int i =0, i_end = tree.size(); i<i_end; ++i)
-        {
-            if ( !visited[i] && isCyclicUtil(i, visited, recStack) ) {
-                return true;
-            }
-            else if (recStack[i]){
-                return true;
-            }
-        }
- 
-    }
-    recStack[v] = false;  // remove the vertex from recursion stack
-    return false;
 }
 
 struct Node{
@@ -157,55 +131,34 @@ void printGraph(Graph &g){
         cout<<endl;
     }
 }
-void print_arr(bool *a, int n){
-    for(int i=0; i<n; ++i){
-        cout<<a[i]<<endl;
-    }
-}
 
-vector<string> all_cycles(Graph *g){
+vector<string> depth_first_search(Graph &g){
+    cout<<"What value are you looking for (type 2)"<<endl;
+    int goal;
+    cin>>goal; //TODO add checks and balances here
 
-    queue<Node> Q;
+    stack<Node> Q;
     vector<Node> children;
     vector<string> path;
 
-    int n= g->tree.size();
-    bool *visited = new bool[n];
-    bool *recStack = new bool[n];
-    for(int i = 0; i < n; i++)
-    {
-        visited[i] = false;
-        recStack[i] = false;
-    }
-    //print_arr(recStack, n);
- 
-
-    Node root =  g->tree[0];
+    Node root =  g.tree[0];
     Q.push(root);
 
     while(!Q.empty()){
-        Node t = Q.front();
+        Node t = Q.top();
+        path.push_back(to_string(t.getVal()));
         Q.pop();
-        cout<<t.getVal()<<endl;
 
-    /*
-        for(int i = 0; i < n; i++){
-            if (!visited[i] && g->isCyclicUtil(i, visited, recStack)){
-                cout<<"hmm"<<endl;
-                print_arr(recStack, n);
-            }
-            else if (recStack[i])
-                cout<<"already seen"<<endl;
-            else{
-                cout<<"unhandled case"<<endl;
-            }
+        if(t == goal){
+            cout<<"FOUND IT"<<endl;
+            return path;
         }
-*/
         children = t.getNeighbours();
         for(int i =0, i_end=children.size(); i< i_end; ++i){
             Q.push(children[i]);
         }
     }
+    cout<<"Did not find it :( "<<endl;
     return path;
 
 }
@@ -256,12 +209,11 @@ int main()
     cout<<"This is the graph: "<<endl;
     printGraph(g);
 
-    //ASSERT that graph is constructed, now I find all cycles
-    vector<string> path = all_cycles(&g);
-    for(int i=0, i_end=path.size(); i<i_end;++i){
-        cout<<path[i];
+    //ASSERT that graph is constructed, now I do BFS on it :D
+    vector<string> cycles = breadth_first_search(g);
+    for(int i=0, i_end=cycles.size(); i<i_end; ++i){
+        cout<<cycles[i]<<endl;
     }
-    cout<<endl;
 
     return 0;
 }
