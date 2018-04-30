@@ -11,8 +11,14 @@ A. Reading
 B. Exercises
 
     1.[C] Exercise 6.18, page 181.
-Yes, by using the 
+
+Yes. By utilizing dynamic programming principles, the brid of possibilites built by the algorithm will be of n*v size. So to check every possbiility it will take O(nv). 
+
     2.[C] Exercise 6.20, page 182.
+
+Using Dynamic programming, we get the following subproblems: 
+
+    cost(i,j) = Sum(freq k + min{r=1}^{j}\begin{bmatrix} optcost(i, r-1) + optcost(r+1, j) \end{bmatrix} 
 
     3.[C] Exercise 6.24ab, pages 183,184.
 

@@ -5,4 +5,6 @@
 3. Produce a detailed pseudo code for the simplex algorithm.
     - Understand 
 
+4. Something more about simplex
+
 May 10th 
