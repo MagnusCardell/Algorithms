@@ -32,3 +32,4 @@
 *.app
 
 exercises/hw13/graph_reader.cpp
+exercises/final*

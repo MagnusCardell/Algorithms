@@ -3,6 +3,7 @@
 using namespace std;
 
 #define V 4
+#define INT_MAX 999
 /*
 Travelling Salesman Problem (TSP): 
     Given a set of cities and distance between every pair of cities, 
