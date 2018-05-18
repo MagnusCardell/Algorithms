@@ -1,0 +1,22 @@
+objective: O 
+ineqalities: I 
+constraints: C 
+
+Pseudocode:
+Simplex(O, I, C):
+    start_v = min c_i s.t. I and C are true
+    if(check_optimal(O(0), I, C)):
+        return O(0);
+    
+    For all a in 
+        if a point p is unique in satisfying ineqalities:
+            V.add(p)
+    for all v in  V:
+        while(!check_optimal(O(v'), I, C):
+            v = v'
+
+check_optimal(O, I, C):
+    can_Improve:
+        if (c in C >  0): //looking for non-negative values c > 0
+            return true
+        return false

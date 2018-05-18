@@ -4,12 +4,27 @@
 #include <fstream>
 #include <bits/stdc++.h>
 using namespace std;
-
+/*
+Pseudocode:
+for v in V:
+  v.covered = false
+schools[V]
+Makequeue Q
+while(!Q.empty){
+  e = Q.first
+  if(!e.covered){
+    for all n in e.neighbours{
+      n.covered = true
+    }
+    e.covered = true
+    schools.apped(e)
+  }
+}
+*/
 typedef pair<int, int> Edge;
 typedef pair<int, Edge> edge;
 
-struct Node
-{
+struct Node {
   int val;
   vector<int> nedges;
   bool covered;
@@ -24,23 +39,7 @@ void print_queue(vector<Node> &q){
   }
 }
 
-vector<Node> prio_queue(vector<Node> &v){
-  vector<Node> p;
-  p.push_back(v[0]);
-  for(int i=0, i_end=v.size(); i<i_end; ++i){
-    for(int j=0, j_end=p.size(); j<j_end; ++j){
-      if( v[i].nedges.size() > p[j].nedges.size()){
-        Node t = p[j];
-        p[j] = v[i]; 
-        p.push_back(t);
-      }
-    }
-  }
-  return p;
-}
-
-struct Graph
-{
+struct Graph {
   Node n;
   vector<Node> adjList;
   int V, E; //number of vertexes, edges
@@ -56,26 +55,22 @@ struct Graph
   void set_cover_greedy();
 };
 
-Graph::Graph(int Ve, int Ed)
-{
+Graph::Graph(int Ve, int Ed) {
   V = Ve;
   E = Ed;
   adjList.resize(Ve);
 }
-void Graph::newEdge(int v1, int v2, int w)
-{ //from, to, weight
+void Graph::newEdge(int v1, int v2, int w) { //from, to, weight
   edges.push_back({w, {v1, v2}});
   adjList[v1].val = v1;
   adjList[v1].nedges.push_back(v2);
 }
-void Graph::eraseEdge(int v1)
-{
+void Graph::eraseEdge(int v1) {
   edges.pop_back();
   adjList[v1].nedges.pop_back();
 }
 
-void Graph::print_edges()
-{
+void Graph::print_edges() {
   vector<edge>::iterator it;
   for (it = edges.begin(); it != edges.end(); it++)
   {
@@ -102,18 +97,18 @@ void Graph::set_cover_greedy(){
   }
 
   vector<int> schools;
-  //vector<Node> Q = prio_queue(adjList);
   vector<Node> Q = adjList;
-  sort(Q.begin(), Q.end()); //Using cusom operator defined in Node struct
-
+  sort(Q.begin(), Q.end()); //Using custom priority operator defined in Node struct
+  //print_queue(Q);
+  cout<<adjList[8].val<<endl;
   while(!Q.empty()){
     Node t = Q.back();
     Q.pop_back();
-    if(!t.covered){
+    if(!adjList[t.val].covered){
       for(int i=0, i_end=t.nedges.size(); i<i_end; ++i){
-        Q[i].covered = true;
+        adjList[t.nedges[i]].covered = true;
       }
-      t.covered = true;
+      adjList[t.val].covered = true;
       schools.push_back(t.val);
     }
   }
@@ -125,8 +120,7 @@ void Graph::set_cover_greedy(){
   return;
 }
 
-vector<string> split(const string &line, const char *delim = " \t")
-{
+vector<string> split(const string &line, const char *delim = " \t") {
   vector<string> word;
   size_t loc0, loc1;
   loc0 = line.find_first_not_of(delim); //location of non-delim char
@@ -147,7 +141,7 @@ vector<string> split(const string &line, const char *delim = " \t")
 }
 
 int main() {
-  ifstream f("random.txt");
+  ifstream f("page146.txt");
   string line;
   //Get first line
   getline(f, line);

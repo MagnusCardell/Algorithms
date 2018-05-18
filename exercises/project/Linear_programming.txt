@@ -1,0 +1,52 @@
+p193 7.1.2 Production Planning
+
+440 demand 920
+
+30 employees
+each make 20 carpets per month and $2000 a month
+no initial surplus of carpets
+
+1. Overtime: pay 80% more, max 30% longer
+2. Hiring: $320, Firing: $400 per worker
+3. Storing surplus: cost 8$/carpet, must end year with no surplus
+
+w_i = number of workers during the ith month; w_0 = 30.
+x_i = number of carpets made during the ith month.
+o_i = number of carpets ,ade by overtime in month i.
+h_i = number of workers hired during month i
+f_i = number of workers fired during month i
+s_i = number of carpets stored at end of month i; s_0 = 0.
+
+Variables must be non-negative:
+    w_i, x_i, o_i, h_i, f_i, s_i >= 0 for i=1...12
+
+Total number of carpets made per month is the sum of regular and overtime production:
+    x_i = 20 w_i + o_i
+
+For each i=1...12, workers can change at each month:
+    w_i = w_{i-1} + h_i - f_i 
+
+The number of carpets stored at the end of each month is previous storage + production - demand:
+    s_i = s_{i-1} + x_i - d_i 
+
+Overtime is limited
+    o_i <= 6w_i
+
+Objective is to minimize cost:
+    min( 2000(sum(w_i)) + 320(sum(h_i)) + 400(sum(f_i)) + 8(sum(s_i)) + 180(sum(o_i)))
+
+demand:
+    d1 = 460 a 
+    d2 = 500 b
+    d3 = 540 c
+    d4 = 800 d
+    d5 = 920 e
+    d6 = 680 f
+    d7 = 740 g
+    d8 = 780 h
+    d9 = 840 i
+    d10 = 620 j
+    d11 = 480 k
+    d12 = 440 l
+
+With 74 variables, all this work is put into mathlab file named "Algo_final_LP" that is in this directory. 

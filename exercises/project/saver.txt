@@ -105,15 +105,16 @@ void Graph::set_cover_greedy(){
   //vector<Node> Q = prio_queue(adjList);
   vector<Node> Q = adjList;
   sort(Q.begin(), Q.end()); //Using cusom operator defined in Node struct
-
+  print_queue(Q);
+  cout<<adjList[8].val<<endl;
   while(!Q.empty()){
     Node t = Q.back();
     Q.pop_back();
-    if(!t.covered){
+    if(!adjList[t.val].covered){
       for(int i=0, i_end=t.nedges.size(); i<i_end; ++i){
-        Q[i].covered = true;
+        adjList[t.nedges[i]].covered = true;
       }
-      t.covered = true;
+      adjList[t.val].covered = true;
       schools.push_back(t.val);
     }
   }
@@ -147,7 +148,7 @@ vector<string> split(const string &line, const char *delim = " \t")
 }
 
 int main() {
-  ifstream f("random.txt");
+  ifstream f("page146.txt");
   string line;
   //Get first line
   getline(f, line);
