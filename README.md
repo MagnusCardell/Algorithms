@@ -1,5 +1,7 @@
 # Algorithms
-Repository for my algorithms course
+Repository for my algorithms exercises
+
+exercises folder is for solutions to the Algorithms course i took 
 
 
 Big O definition:
