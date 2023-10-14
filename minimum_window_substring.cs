@@ -78,32 +78,31 @@ public class Solution {
         var left = 0;
         var right = 0;
 
-        var tMap = new Dictionary<char, int>();
+        var tLookup = new Dictionary<char, int>();
         foreach(var c in t){
-            if(tMap.ContainsKey(c)){
-                tMap[c] += 1;
-            }
-            else{
-                tMap[c] = 1;
-            }
+            // Increment character count
+            tLookup.TryGetValue(c, out var cunt);
+            tLookup[c] = count + 1;
         }
 
         var window = new Dictionary<char, int>();
         var have = 0;
         var need = t.Length;
         for(right = 0; right < s.Length; ++right){
+
+            
             if(tMap.ContainsKey(s[right])){
-                if(window.ContainsKey(s[right])){
-                    window[s[right]] += 1;
-                }
-                else{
-                    window[s[right]] = 1;
-                }
+
+                // if exists in t, update window and check validity
+                window.TryGetValue(s[right], out var count);
+                window[s[right]] = count + 1;
                 have += 1;
 
                 if(have >= need){
-                    foreach(var key in tMap.GetKeys()){
-                        if(tMap[key] <= win)
+                    foreach(var key in tLookup.GetKeys()){
+                        if(tLookup[key] <= window[key]){
+
+                        }
                     }
                 }
             }
