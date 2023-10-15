@@ -12,3 +12,4 @@ def calculate_employee_score(hierarchy: {int: [int]}, eid: int) -> int:
 
 assert calculate_employee_score({}, 1) == 1, "base"
 assert calculate_employee_score({123: [234, 345], 234: [456, 789], 345:[], 456:[], 789:[]}, 123) == 5, "example"
+assert calculate_employee_score({123: [234], 234: [123]}, 123) == 1, "cycle example"
