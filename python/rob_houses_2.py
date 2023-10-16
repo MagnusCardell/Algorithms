@@ -1,6 +1,6 @@
 from typing import List
 def rob(nums: List[int]) -> int:
-    return max(rob_houses1(nums[1:]), rob_houses1(nums[:-1]))
+    return max(nums[0], rob_houses1(nums[1:]), rob_houses1(nums[:-1]))
 
 def rob_houses1(nums: List[int]) -> int:
     greedy = 0
