@@ -2,13 +2,12 @@
 Repository for my algorithms exercises
 
 exercises folder is for solutions to the Algorithms course i took 
-
+csharp, cpp, python are all folders with solutions to algorithm problems in respective languages.
 
 Big O definition:
 Let f(n) and g(n) be functions from positive integers to positive reals. We can say that f = O(g) if there is a constant c > 0 such that f <= c * g(n). 
 
 Master theorem:
-
 If T(n) = aT([n/b]) + O(n^d) for some constants a>0, b>1, and d>=0, then
 
 T(n) = O(n^d) if d>logb a
